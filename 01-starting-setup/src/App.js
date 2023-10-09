@@ -27,16 +27,19 @@ const DUMMY_EXPENSES = [
 function App() {
 
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
+  const [formVisibility, setFormVisibility] = useState('hide');
+
 
   const handleAddExpense = (expense) => {
     setExpenses((prev) => {
       return [expense, ...prev]
     });
+    setFormVisibility('hide');
 };
 
   return (
     <div>
-      <NewExpense onAddExpense={handleAddExpense}/>
+      <NewExpense onAddExpense={handleAddExpense} formVisibility={formVisibility} setFormVisibility={setFormVisibility}/>
       <Expenses expenses={expenses}/>
     </div>
   );

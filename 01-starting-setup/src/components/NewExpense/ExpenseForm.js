@@ -66,6 +66,7 @@ const ExpenseForm = (props) => {
 
             </div>
                 <div className='new-expense__actions'>
+                    <button onClick={()=>props.setFormVisibility('hide')}>Cancel</button>
                     <button>Add Expense</button>
                 </div>
         </form>

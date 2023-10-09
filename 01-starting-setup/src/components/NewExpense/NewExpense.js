@@ -12,9 +12,12 @@ const NewExpense = (props) => {
         props.onAddExpense(expenseData)
     }
 
+
     return(<>
         <div className='new-expense'>
-            <ExpenseForm onSaveExpenseData = {handleSaveExpenseData} />
+            {props.formVisibility === 'hide' ? 
+            <button onClick={()=> props.setFormVisibility('show')}>Add New Expense</button> :
+            <ExpenseForm onSaveExpenseData = {handleSaveExpenseData} setFormVisibility={props.setFormVisibility}/>}
         </div>
     
     </>)
