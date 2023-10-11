@@ -1,7 +1,7 @@
 import styles from './Form.module.css'
 import { useState } from 'react'
 
-const Form = ({calculateHandler}) => {
+const Form = ({handleCalculate}) => {
 
     const [currentSavings, setCurrentSavings] = useState(0);
     const [yearlyContribution, setYearlyContribution] = useState(0);
@@ -11,7 +11,7 @@ const Form = ({calculateHandler}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit')
+        handleCalculate(currentSavings, yearlyContribution, expectedReturn, duration)
     };
 
     const handleReset = () => {
