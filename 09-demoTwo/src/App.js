@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import AddUser from './Components/AddUser/AddUser';
 import UserList from './Components/UserList/UserList';
-import ErrorModal from './Components/ErrorModal/ErrorModal';
 
 
 function App() {
     
-    const [showErrorModal, setShowErrorModal] = useState(false);
     const [userList, setUserList] = useState([]);
 
     const handleUserList = (user) => {
@@ -16,13 +14,7 @@ function App() {
     }
     
     return (<>
-        {showErrorModal && 
-            <ErrorModal 
-                title={'Error Message'} 
-                content={'Check on your inputs please!'} 
-                setShowErrorModal={setShowErrorModal}
-            />}
-        <AddUser handleUserList={handleUserList} setShowErrorModal={setShowErrorModal} />
+        <AddUser handleUserList={handleUserList}/>
         <UserList userList={userList}/>
 
 </>);

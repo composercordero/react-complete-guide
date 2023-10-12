@@ -3,11 +3,11 @@ import Card from '../Card/Card'
 import styles from './ErrorModal.module.css'
 
 
-const ErrorModal = ({title, content, setShowErrorModal}) => {
+const ErrorModal = ({title, content, handleError}) => {
 return (<>
 
-    <Card className={styles.backdrop}>
-        <div className={styles.modal}>
+    <div className={styles.backdrop} onClick={handleError}>
+        <Card className={styles.modal}>
             <div className={styles.header}>
                 <h2>{title}</h2>
             </div>
@@ -15,10 +15,10 @@ return (<>
                 <p>{content}</p>
             </div>
             <div className={styles.actions}>
-                <Button onClick={() =>  setShowErrorModal(false)}>Confirm</Button>
+                <Button onClick={handleError}>Confirm</Button>
             </div>
-        </div>
-    </Card>
+        </Card>
+    </div>
 
 </>)
 }

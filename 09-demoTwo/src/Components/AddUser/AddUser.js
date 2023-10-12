@@ -2,6 +2,7 @@ import Button from '../Button/Button'
 import Card from '../Card/Card';
 import styles from './AddUser.module.css'
 import { useState } from 'react';
+import ErrorModal from '../ErrorModal/ErrorModal'
 
 const initialUserState = {
   'name': '',
@@ -9,18 +10,25 @@ const initialUserState = {
   'id': Math.random().toString(),
 }
 
-const AddUser = ({handleUserList, setShowErrorModal}) => {
+const AddUser = ({handleUserList}) => {
   
   const [user, setUser] = useState(initialUserState);
+  const [error, setError] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (user.name.trim().length === 0 || user.age.trim().length === 0){
-      setShowErrorModal(true);
+      setError({
+        title:'Invalid Input',
+        content: 'Please enter a valid name and age.'
+      });
       return;
     }
     if (+user.age < 1){
-      setShowErrorModal(true);
+      setError({
+        title:'Invalid Input',
+        content: 'Please enter a valid age.'
+      });      
       return;
     }
     handleUserList(user)
@@ -35,8 +43,18 @@ const AddUser = ({handleUserList, setShowErrorModal}) => {
     }
     })
   };
+
+  const handleError = () => {
+    setError(null);
+  }
   
   return (<>
+    {error && 
+      <ErrorModal 
+          title={error.title} 
+          content={error.content}
+          handleError={handleError} 
+      />}
     <Card className={styles.input}>
       <form onSubmit={handleSubmit}>
 
