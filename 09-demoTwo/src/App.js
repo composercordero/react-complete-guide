@@ -7,13 +7,23 @@ import ErrorModal from './Components/ErrorModal/ErrorModal';
 function App() {
     
     const [showErrorModal, setShowErrorModal] = useState(false);
-    const [userList, setUserList] = useState(null);
+    const [userList, setUserList] = useState([]);
+
+    const handleUserList = (user) => {
+        setUserList((prev)=>{
+            return [...prev, user]
+        })
+    }
     
     return (<>
-        {showErrorModal && <ErrorModal />}
-        <AddUser />
-        {!userList && <p>Add some users!</p>}
-        {userList && <UserList />}
+        {showErrorModal && 
+            <ErrorModal 
+                title={'Error Message'} 
+                content={'Check on your inputs please!'} 
+                setShowErrorModal={setShowErrorModal}
+            />}
+        <AddUser handleUserList={handleUserList} setShowErrorModal={setShowErrorModal} />
+        <UserList userList={userList}/>
 
 </>);
 }
