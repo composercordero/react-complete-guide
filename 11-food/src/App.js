@@ -1,7 +1,8 @@
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header/Header";
 import Meals from "./components/Meals/Meals";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CartProvider from "./store/CartProvider";
 
 
 function App() {
@@ -17,11 +18,13 @@ function App() {
     };
 
   return (<>
-    {showCart && <Cart onClose={handleHideCart}/>}
-    <Header onShowCart= {handleShowCart}/>
-    <main>
-      <Meals />
-    </main>
+    <CartProvider>
+      {showCart && <Cart onClose={handleHideCart}/>}
+      <Header onShowCart= {handleShowCart}/>
+      <main>
+        <Meals />
+      </main>
+    </CartProvider>
   </>
   );
 }
