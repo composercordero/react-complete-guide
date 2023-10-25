@@ -27,7 +27,7 @@ function isPrime(number) {
   return true;
 }
 
-export default function Counter({ initialCount }) {
+const Counter = memo(function Counter({ initialCount }) {
   log('<Counter /> rendered', 1);
   const initialCountIsPrime = isPrime(initialCount);
 
@@ -58,4 +58,12 @@ export default function Counter({ initialCount }) {
       </p>
     </section>
   );
-}
+})
+
+export default Counter;
+
+// Recommended to put memo in a const and then export that const
+
+// Memo looks at the props of the function it wraps. It will only render this function again if said props change.
+
+// Do not overuse memo. Instead, wrap 
