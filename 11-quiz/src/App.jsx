@@ -4,7 +4,9 @@ import Quiz from "./components/Quiz/Quiz";
 function App() {
     return(<>
         <Header />
-        <Quiz />
+        <main>
+            <Quiz />
+        </main>
     </>)
 }
 
